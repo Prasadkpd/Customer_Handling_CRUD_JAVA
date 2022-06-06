@@ -2,17 +2,15 @@
   Created by IntelliJ IDEA.
   User: prasad
   Date: 2022-06-06
-  Time: 08.05
+  Time: 09.01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Hello World</title>
+    <title>Unsuccessful</title>
 </head>
 <body>
-<h1>This is a Simple CRUD Application</h1>
-<a href="/Customer_Login_war_exploded/login.jsp">Login</a> <br>
-<a href="/Customer_Login_war_exploded/createUser.jsp">Create User</a>
+<h1>UNSUCCESSFUL</h1>
 </body>
 </html>

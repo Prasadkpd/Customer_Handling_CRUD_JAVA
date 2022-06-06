@@ -7,6 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
 public class CustomerDBUtil {
     public static List<Customer> validate(String userName, String password) {
 
@@ -19,10 +21,10 @@ public class CustomerDBUtil {
         //validate
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(dbUrl,dbUser,dbPassword);
+            Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
             Statement statement = connection.createStatement();
 
-            String query = "SELECT * FROM customer WHERE username='"+userName+"' AND password='"+password+"'";
+            String query = "SELECT * FROM customer WHERE username='" + userName + "' AND password='" + password + "'";
 
             ResultSet resultSet = statement.executeQuery(query);
 
@@ -37,12 +39,40 @@ public class CustomerDBUtil {
                 Customer customerData = new Customer(id, name, email, phone, user, pass);
                 customer.add(customerData);
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
         //assign value to customer array object
         return customer;
+    }
+
+    public static boolean createUser(String name, String email, String phone, String userName, String password) {
+        boolean isSuccess = false;
+
+        //create database connection
+        String dbUrl = "jdbc:mysql://localhost:3306/Java_Login";
+        String dbUser = "root";
+        String dbPassword = "";
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
+            Statement statement = connection.createStatement();
+
+            String query = "INSERT INTO customer VALUES (0,'" + name + "','" + email + "','" + phone + "','" + userName + "','" + password + "')";
+
+            int result = statement.executeUpdate(query);
+
+            if (result > 0) {
+                isSuccess = true;
+            } else {
+                isSuccess = false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return isSuccess;
     }
 }
