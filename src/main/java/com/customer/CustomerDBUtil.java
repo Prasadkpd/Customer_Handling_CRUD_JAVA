@@ -8,25 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-
 public class CustomerDBUtil {
+
+    private static Connection connection = null;
+    private static Statement statement = null;
+    private static ResultSet resultSet = null;
+
     public static List<Customer> validate(String userName, String password) {
 
         ArrayList<Customer> customer = new ArrayList<>();
-        //create database connection
-        String dbUrl = "jdbc:mysql://localhost:3306/Java_Login";
-        String dbUser = "root";
-        String dbPassword = "";
-
         //validate
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-            Statement statement = connection.createStatement();
-
+            connection = DBConnect.getConnection();
+            statement = connection.createStatement();
             String query = "SELECT * FROM customer WHERE username='" + userName + "' AND password='" + password + "'";
 
-            ResultSet resultSet = statement.executeQuery(query);
+            resultSet = statement.executeQuery(query);
 
             if (resultSet.next()) {
                 int id = resultSet.getInt(1);
@@ -50,16 +47,9 @@ public class CustomerDBUtil {
     public static boolean createUser(String name, String email, String phone, String userName, String password) {
         boolean isSuccess = false;
 
-        //create database connection
-        String dbUrl = "jdbc:mysql://localhost:3306/Java_Login";
-        String dbUser = "root";
-        String dbPassword = "";
-
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection connection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-            Statement statement = connection.createStatement();
-
+            connection = DBConnect.getConnection();
+            statement = connection.createStatement();
             String query = "INSERT INTO customer VALUES (0,'" + name + "','" + email + "','" + phone + "','" + userName + "','" + password + "')";
 
             int result = statement.executeUpdate(query);
