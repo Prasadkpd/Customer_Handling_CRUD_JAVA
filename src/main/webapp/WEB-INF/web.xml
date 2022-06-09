@@ -11,7 +11,7 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-    
+
     <servlet>
         <servlet-name>createUser</servlet-name>
         <servlet-class>com.customer.createUserServlet</servlet-class>
@@ -21,4 +21,12 @@
         <url-pattern>/create</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>updateUser</servlet-name>
+        <servlet-class>com.customer.updateUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>updateUser</servlet-name>
+        <url-pattern>/update</url-pattern>
+    </servlet-mapping>
 </web-app>

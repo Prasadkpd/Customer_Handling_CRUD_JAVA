@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>User-Account</title>
@@ -19,7 +19,7 @@
         <c:set var="name" value="${customer.name}"/>
         <c:set var="email" value="${customer.email}"/>
         <c:set var="phone" value="${customer.phone}"/>
-        <c:set var="username" value="${customer.username}"/>
+        <c:set var="username" value="${customer.userName}"/>
         <c:set var="password" value="${customer.password}"/>
         <tr>
             ID: ${customer.id} <br>

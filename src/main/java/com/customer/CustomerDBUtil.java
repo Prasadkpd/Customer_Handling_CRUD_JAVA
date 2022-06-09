@@ -1,5 +1,6 @@
 package com.customer;
 
+import javax.swing.text.EditorKit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ public class CustomerDBUtil {
     private static Connection connection = null;
     private static Statement statement = null;
     private static ResultSet resultSet = null;
+    private static boolean isSuccess;
 
     public static List<Customer> validate(String userName, String password) {
 
@@ -45,7 +47,7 @@ public class CustomerDBUtil {
     }
 
     public static boolean createUser(String name, String email, String phone, String userName, String password) {
-        boolean isSuccess = false;
+        isSuccess = false;
 
         try {
             connection = DBConnect.getConnection();
@@ -61,6 +63,27 @@ public class CustomerDBUtil {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        return isSuccess;
+    }
+
+    public static boolean updateUser(String id, String name, String email, String phone, String userName, String password) {
+        try {
+            connection = DBConnect.getConnection();
+            statement = connection.createStatement();
+            String query = "UPDATE customer SET name='" + name + "', email='" + email + "',phone='" + phone + "',username='" + userName + "',password='" + password + "' WHERE id='" + id + "' ";
+
+            int result = statement.executeUpdate(query);
+
+            if (result > 0) {
+                isSuccess = true;
+            } else {
+                isSuccess = false;
+            }
+
+        } catch (Exception e) {
+
         }
 
         return isSuccess;

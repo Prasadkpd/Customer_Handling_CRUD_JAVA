@@ -19,8 +19,8 @@
  String username = request.getParameter("username");
  String password = request.getParameter("password");
 %>
-<form action="" method="post">
- User ID <input type="text" name="uid" value="<%= id %>"> <br>
+<form action="update" method="post">
+ User ID <input type="text" name="uid" value="<%= id %>" readonly> <br>
  Name <input type="text" name="name" value="<%= name %>"> <br>
  Email <input type="email" name="email" value="<%= email %>"> <br>
  Phone Number <input type="text" name="phone" value="<%= phone %>"> <br>
