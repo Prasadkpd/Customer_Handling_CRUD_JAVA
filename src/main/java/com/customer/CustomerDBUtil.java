@@ -1,10 +1,7 @@
 package com.customer;
 
 import javax.swing.text.EditorKit;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +25,7 @@ public class CustomerDBUtil {
             resultSet = statement.executeQuery(query);
 
             if (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String name = resultSet.getString(2);
-                String email = resultSet.getString(3);
-                String phone = resultSet.getString(4);
-                String user = resultSet.getString(5);
-                String pass = resultSet.getString(6);
-
-                Customer customerData = new Customer(id, name, email, phone, user, pass);
-                customer.add(customerData);
+                customerData(customer);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -88,4 +77,38 @@ public class CustomerDBUtil {
 
         return isSuccess;
     }
+
+    public static List<Customer> getCustomerDetails(String Id) {
+
+        ArrayList<Customer> customer = new ArrayList<>();
+        int convertedId = Integer.parseInt(Id);
+
+        try {
+            connection = DBConnect.getConnection();
+            statement = connection.createStatement();
+            String query = "SELECT * from customer where id ='" + convertedId + "' ";
+            resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                customerData(customer);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return customer;
+    }
+
+    private static void customerData(ArrayList<Customer> customer) throws SQLException {
+        int id = resultSet.getInt(1);
+        String name = resultSet.getString(2);
+        String email = resultSet.getString(3);
+        String phone = resultSet.getString(4);
+        String userName = resultSet.getString(5);
+        String password = resultSet.getString(6);
+
+        Customer customerObject = new Customer(id, name, email, phone, userName, password);
+        customer.add(customerObject);
+    }
+
 }

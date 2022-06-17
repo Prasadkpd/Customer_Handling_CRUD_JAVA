@@ -24,7 +24,7 @@ public class createUserServlet extends HttpServlet {
             dispatcher.forward(request, response);
         }
         else {
-            RequestDispatcher dispatcher = request.getRequestDispatcher("unsuccess.jsp");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("unSuccess.jsp");
             dispatcher.forward(request, response);
         }
     }
