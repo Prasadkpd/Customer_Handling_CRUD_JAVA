@@ -4,6 +4,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "updateUserServlet", value = "/updateUserServlet")
 public class updateUserServlet extends HttpServlet {
@@ -21,9 +22,11 @@ public class updateUserServlet extends HttpServlet {
 
         RequestDispatcher dispatcher;
         if (isTrue == true) {
-            dispatcher = request.getRequestDispatcher("success.jsp");
+            List<Customer> customerDetails = CustomerDBUtil.getCustomerDetails(id);
+            request.setAttribute("customerDetails",customerDetails);
+            dispatcher = request.getRequestDispatcher("userAccount.jsp");
         } else {
-            dispatcher = request.getRequestDispatcher("unsuccess.jsp");
+            dispatcher = request.getRequestDispatcher("unSuccess.jsp");
         }
         dispatcher.forward(request, response);
     }
