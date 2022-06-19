@@ -111,4 +111,26 @@ public class CustomerDBUtil {
         customer.add(customerObject);
     }
 
+    public static boolean deleteUser(String id) {
+
+        int convertedId = Integer.parseInt(id);
+
+        try{
+            connection = DBConnect.getConnection();
+            statement = connection.createStatement();
+            String query = "DELETE from customer where id ='" + convertedId + "' ";
+            int result = statement.executeUpdate(query);
+
+            if (result > 0) {
+                isSuccess = true;
+            } else {
+                isSuccess = false;
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return isSuccess;
+    }
+
 }
