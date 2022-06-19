@@ -29,4 +29,13 @@
         <servlet-name>updateUser</servlet-name>
         <url-pattern>/update</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>deleteUser</servlet-name>
+        <servlet-class>com.customer.deleteUser</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteUser</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
 </web-app>

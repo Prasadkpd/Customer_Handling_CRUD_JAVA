@@ -54,5 +54,17 @@
 <a href="${updateUser}">
     <input type="button" name="update" value="Update My Data">
 </a>
+<br>
+<c:url value="deleteUser.jsp" var="deleteUser">
+    <c:param name="id" value="${id}"/>
+    <c:param name="name" value="${name}"/>
+    <c:param name="email" value="${email}"/>
+    <c:param name="phone" value="${phone}"/>
+    <c:param name="username" value="${username}"/>
+    <c:param name="password" value="${password}"/>
+</c:url>
+<a href="${deleteUser}">
+<input type="button" name="delete" value="Delete My Account">
+</a>
 </body>
 </html>
